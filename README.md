@@ -1,2 +1,2 @@
 # Estructura de datos y algoritmos
- Repositorio con ejercicios
+ Repositorio con los ejercicios de cada unidad
