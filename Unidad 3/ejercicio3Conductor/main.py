@@ -9,7 +9,7 @@ if __name__ == "__main__":
     while not destino:
         pueblo = input("Ingrese nombre pueblo: ")
         viaje.insertar(pueblo)
-        llego = input("Llego a destino? [S/N]: ")
+        llego = input("¿Llegó a destino? [S/N]: ")
         if llego.upper() == 'S':
             destino = True
     
@@ -21,7 +21,7 @@ if __name__ == "__main__":
         #Almaceno en aux para invertir las posiciones
         pilaAux.insertar(x) 
         print("{} -> ".format(x),end="")
-    print("llego a pueblo de origen")
+    print("llegó a pueblo de origen")
     
     #Muestro recorrido de ida
     print("\nRecorrido de ida")
@@ -29,4 +29,4 @@ if __name__ == "__main__":
     while not pilaAux.vacia():
         x = pilaAux.suprimir()
         print("{} -> ".format(x),end="")
-    print("llego a pueblo de destino\n")
+    print("llegó a pueblo de destino\n")
