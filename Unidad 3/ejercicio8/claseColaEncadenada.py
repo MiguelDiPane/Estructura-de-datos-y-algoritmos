@@ -52,13 +52,3 @@ class ColaEncadenada:
                 self.__ul = None
             del aux
             return x
-    
-    def recuperarPr(self):
-        return self.__pr
-    
-    def recorrer(self, auxPr):
-        if type(auxPr) == Nodo:
-            if auxPr != None:
-                item = auxPr.getDato()
-                print(item)
-                self.recorrer(self,auxPr.getSiguiente())
