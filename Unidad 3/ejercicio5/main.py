@@ -32,7 +32,7 @@ if __name__ == "__main__":
     print(separador)
     print("|{0:^60}|".format("JUEGO TERMINADO"))
     print(separador)
-    print("| Movimientos optimo: {0:39}|".format(2**n-1))
+    print("| Movimientos óptimos: {0:38}|".format(2**n-1))
     print("| Movimientos realizados: {0:35}|".format(cont))
     print(separador)
     input("\nPresione una tecla para finalizar...")
