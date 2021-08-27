@@ -1,4 +1,4 @@
-from claseColas import ColaEncadenada
+from claseColaEncadenada import ColaEncadenada
 from clasePaciente import Paciente
 from claseMesaEntrada import MesaEntrada
 from claseConsultorio import Consultorio
