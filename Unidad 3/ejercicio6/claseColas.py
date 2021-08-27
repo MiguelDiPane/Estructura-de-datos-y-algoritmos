@@ -5,11 +5,12 @@ class ColaSecuencial:
     __ul = 0 #Apunta al ultimo elemento
     __cant = 0 #Cantidad de elementos en un momento dado
 
-    def __init__(self, xmax=0):
-        __pr = 0
-        __ul = 0
-        __cant = 0
-        __items = []
+    def __init__(self,xmax):
+        self.__pr = 0
+        self.__ul = 0
+        self.__cant = 0
+        self.__max = xmax
+        self.__items = []
     
     def vacia(self):
         vacia = False
@@ -43,14 +44,6 @@ class ColaSecuencial:
             self.__pr = (self.__pr+1)%self.__max #Incremento usando aritmética modular
             self.__cant -= 1
             return x
-    
-    #Incrementar 1 minuto en los elementos de la cola de espera
-    #Tiene orden de comp lineal por la accion iterativa
-    def recorrer(self):
-        if not self.vacia():
-            i = self.__pr
-            for j in range(self.__cant):
-                pass
 
 class Nodo:
     __dato = None
@@ -106,13 +99,3 @@ class ColaEncadenada:
                 self.__ul = None
             del aux
             return x
-    
-    def recuperarPr(self):
-        return self.__pr
-    
-    def recorrer(self, auxPr):
-        if type(auxPr) == Nodo:
-            if auxPr != None:
-                item = auxPr.getDato()
-                print(item)
-                self.recorrer(self,auxPr.getSiguiente())
