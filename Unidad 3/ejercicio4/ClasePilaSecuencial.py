@@ -13,50 +13,33 @@ class PilaSecuencial():
         self.__topeSup = xcant
     
     def vacia(self):
-        vacia = [False, False] #[pila1, pila2]
-        if(self.__topeInf == -1):
-            vacia[0] = True
-        if (self.__topeSup == self.__cant):
-            vacia[1] = True
-        return vacia
+        return [self.__topeInf == -1, self.__topeSup == self.__cant] #[pila1, pila2]
 
     def llena(self):
-        llena = False
-        if(self.__topeInf == self.__topeSup-1):
-            llena = True           
-        return llena 
+        return self.__topeInf == self.__topeSup-1
 
     def insertarInf(self,x):
-        llena = self.llena()
-        if(not llena):
+        if not self.llena():
             self.__topeInf += 1
             self.__items[self.__topeInf] = x    
-        else:
-            print("Pila inferior llena")
 
     def insertarSup(self,x):
-        llena = self.llena()
-        if(not llena):
+        if not self.llena():
             self.__topeSup -= 1
             self.__items[self.__topeSup] = x 
-        else:
-            print("Pila superior llena")
 
     def suprimirInf(self):
         x = None
         vacia = self.vacia()
-        if(vacia[0]):
-            x = "Pila inferior vacia"
-        else:
+        if not vacia[0]:
             x = self.__items[self.__topeInf]
             self.__topeInf -= 1
         return x
 
     def suprimirSup(self):
+        x = None
         vacia = self.vacia()
-        if(vacia[1]):
-            x = "Pila superior vacia"
-        else:
+        if not vacia[1]:
             x = self.__items[self.__topeSup]
             self.__topeSup += 1
         return x
