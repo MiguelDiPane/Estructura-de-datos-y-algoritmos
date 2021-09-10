@@ -9,16 +9,10 @@ class PilaSecuencial:
         self.__tope = -1
     
     def vacia(self):
-        vacia = False
-        if(self.__tope == -1):
-            vacia = True
-        return vacia
+        return self.__tope == -1
 
     def llena(self):
-        llena = False
-        if(self.__tope == self.__cant-1):
-            llena = True
-        return llena 
+        return self.__tope == self.__cant-1
 
     def insertar(self,x):
         if(not self.llena()):
@@ -28,12 +22,11 @@ class PilaSecuencial:
             print("Pila llena")
     
     def suprimir(self):
-        if(self.vacia()):
-            return None
-        else:
-            x = self.__items.pop()
+        result = None
+        if not self.vacia():
+            result = self.__items.pop()
             self.__tope = self.__tope - 1
-            return x
+        return result 
 
 class Nodo:
     __item = None
@@ -45,10 +38,8 @@ class Nodo:
 
     def getItem(self):
         return self.__item
-
     def setSiguiente(self, siguiente):
-        self.__sig = siguiente
-    
+        self.__sig = siguiente  
     def getSiguiente(self):
         return self.__sig
 
@@ -62,11 +53,9 @@ class PilaEncadenada:
         self.__cant = 0
     
     def vacia(self):
-        vacia = False
-        if(self.__cant == 0):
-            vacia = True
-        return vacia       
-
+        return self.__cant == 0
+    
+    #Inserta por cabeza
     def insertar(self,xitem):
         nodo = Nodo(xitem)
         nodo.setSiguiente(self.__comienzo)
@@ -74,10 +63,9 @@ class PilaEncadenada:
         self.__cant += 1
 
     def suprimir(self):
-        if(self.vacia()):
-            print("Pila vacia")
-        else:
-            x = self.__comienzo.getItem()
+        result = None
+        if not self.vacia():
+            result = self.__comienzo.getItem()
             self.__comienzo = self.__comienzo.getSiguiente()
             self.__cant -= 1
-            return x
+        return result
