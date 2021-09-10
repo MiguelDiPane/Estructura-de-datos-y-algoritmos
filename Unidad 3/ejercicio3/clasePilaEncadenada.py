@@ -8,10 +8,8 @@ class Nodo:
 
     def getItem(self):
         return self.__item
-
     def setSiguiente(self, siguiente):
         self.__sig = siguiente
-    
     def getSiguiente(self):
         return self.__sig
 
@@ -25,11 +23,9 @@ class PilaEncadenada:
         self.__cant = 0
     
     def vacia(self):
-        vacia = False
-        if(self.__cant == 0):
-            vacia = True
-        return vacia       
-
+        return self.__cant == 0
+    
+    #Inserta por cabeza
     def insertar(self,xitem):
         nodo = Nodo(xitem)
         nodo.setSiguiente(self.__comienzo)
@@ -37,10 +33,9 @@ class PilaEncadenada:
         self.__cant += 1
 
     def suprimir(self):
-        if(self.vacia()):
-            print("Pila vacia")
-        else:
-            x = self.__comienzo.getItem()
+        result = None
+        if not self.vacia():
+            result = self.__comienzo.getItem()
             self.__comienzo = self.__comienzo.getSiguiente()
             self.__cant -= 1
-            return x
+        return result
