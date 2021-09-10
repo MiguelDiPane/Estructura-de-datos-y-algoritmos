@@ -1,18 +1,16 @@
 from clasePilaEncadenada import PilaEncadenada
 
 if __name__ == "__main__":
-    destino = False
     viaje = PilaEncadenada()
     pilaAux = PilaEncadenada() #para viaje de ida
 
     #Carga de los pueblos en la pila "viaje"
-    while not destino:
+    llego = 'n'
+    while llego.lower() != 's':
         pueblo = input("Ingrese nombre pueblo: ")
         viaje.insertar(pueblo)
         llego = input("¿Llegó a destino? [S/N]: ")
-        if llego.upper() == 'S':
-            destino = True
-    
+   
     #Muestro recorrido de vuelta
     print("\nRecorrido de vuelta")
     print("Parte de: ",end="")
