@@ -13,37 +13,27 @@ class ColaSecuencial:
         self.__items = []
     
     def vacia(self):
-        vacia = False
-        if self.__cant == 0:
-            vacia = True
-        return vacia
-    
+        return self.__cant == 0
+ 
     def llena(self):
-        llena = False
-        if self.__cant == self.__max:
-            llena = True
-        return llena
-    
+        self.__cant == self.__max
+   
     def insertar(self,x):
         if not self.llena():
             self.__items.insert(self.__ul,x)
             #Para la referencia circular y que ul se ponga en 0 al llegar al final
-            self.__ul = (self.__ul+1)%self.__max #Incremento usando aritmética modular
+            #Incremento usando aritmética modular
+            self.__ul = (self.__ul+1)%self.__max #Dará resto 0 cuando ul=max
             self.__cant += 1
-            return x
-        else:
-            return 0
     
-    #Suprime el primero (primero en entrar, primero en salir)
+    #Suprime el primero (FIFO - primero en entrar, primero en salir)
     def suprimir(self):
-        if self.vacia():
-            print("Cola vacia")
-            return 0
-        else:
+        x = None
+        if not self.vacia():
             x = self.__items[self.__pr]
             self.__pr = (self.__pr+1)%self.__max #Incremento usando aritmética modular
             self.__cant -= 1
-            return x
+        return x
 
 class Nodo:
     __dato = None
@@ -64,17 +54,14 @@ class ColaEncadenada:
     __pr = None #Son de tipo Nodo
     __ul = None
 
-    def __init__(self,nodoPr = None, nodoUl = None, xcant = 0):
-        self.__pr = nodoPr
-        self.__ul = nodoUl
+    def __init__(self,xcant=0):
+        self.__pr = None
+        self.__ul = None
         self.__cant = xcant
 
     def vacia(self):
-        vacia = False
-        if self.__cant == 0:
-            vacia = True
-        return vacia
-     
+        return self.__cant == 0
+    
     #Cola dinamica, no tiene max
     def insertar(self,x):
         newNodo = Nodo(x)
@@ -84,13 +71,10 @@ class ColaEncadenada:
             self.__ul.setSiguiente(newNodo)
         self.__ul = newNodo
         self.__cant += 1
-        return x
-    
+   
     def suprimir(self):
-        if self.vacia():
-            print("Cola vacia")
-            return 0
-        else:
+        x = None
+        if not self.vacia():
             aux = self.__pr #Para borrar el nodo
             x = self.__pr.getDato()
             self.__pr = self.__pr.getSiguiente()
@@ -98,4 +82,4 @@ class ColaEncadenada:
             if self.__pr == None: #si el primero queda nulo, el ultimo debe quedar nulo
                 self.__ul = None
             del aux
-            return x
+        return x
