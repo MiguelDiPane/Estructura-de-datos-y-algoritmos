@@ -23,10 +23,13 @@ if __name__ == '__main__':
     cola = ColaEncadenada()
     cajero = Cajero(tCajero)
     pCliente = 1 /tCliente
+    
+    #Almaceno el tiempo de espera maximo
     tEsperaMax = 0
     numCliente = 1
     i = 1
     separador = header()
+    #Simulacion
     while i <= tSimulacion:
         #Analizo llegada de cliente
         aleatorio = 1 /randint(1,tCliente)
