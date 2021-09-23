@@ -25,7 +25,7 @@ class ListaSecuencial:
                     else:
                         #Agrego una copia del ultimo elemento al final, para hacer espacio al nuevo elemento
                         self.__elementos.append(self.__elementos[self.__tope-1])
-                        #Shifteo desplaza desde el ultimo elemento hasta el elemento ubicado en pos-1 (donde ira el nuevo elemento)
+                        #Shifteo desplaza desde el ultimo elemento hasta el elemento ubicado en pos (donde ira el nuevo elemento)
                         for i in range(self.__tope,pos,-1):
                             self.__elementos[i] = self.__elementos[i-1]
                         self.__elementos[pos] = elemento

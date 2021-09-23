@@ -28,8 +28,7 @@ class ListaCursores:
         for i in range(xmax):
             newNodo = Nodo()
             self.__items.append(newNodo)
-        disponible = xmax
-    
+   
     def vacia(self):
         return self.__cant == 0
     def llena(self):
