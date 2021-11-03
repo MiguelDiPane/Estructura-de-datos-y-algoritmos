@@ -66,7 +66,7 @@ def operaciones(grafo,es_ponderado):
         if op == 1:
             grafo.mostrarNodos()
         elif op == 2:
-            grafo.mostrar_arreglo_relaciones()
+            grafo.mostrar_relaciones()
         elif op == 3:
             nodo = int(input('Ingrese nodo: '))
             adyacentes = grafo.adyacentes(nodo)

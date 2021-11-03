@@ -21,7 +21,7 @@ class Registro:
         self.camino = camino
 
 class GrafoEnlazado:
-    '''Grafo con Representación Secuencial, ponderado o no'''
+    '''Grafo con Representación Enlazada, ponderado o no'''
 
     def __init__(self,cant_nodos,ponderado=False):
         self.__cantNodos = cant_nodos
@@ -145,7 +145,8 @@ class GrafoEnlazado:
         es_aciclico = True   
         i = 0
         while i < self.__cantNodos and es_aciclico:
-            hay_ciclo = self.busqueda_en_amplitud_REA(i)
+            datos = self.busqueda_en_amplitud_REA(i)
+            hay_ciclo = datos[3]
             if hay_ciclo:
                 es_aciclico = False
             i+=1
@@ -225,11 +226,13 @@ class GrafoEnlazado:
             nodo_v = cola.suprimir()
             recorrido.append(nodo_v)
             nodos_u = self.adyacentes(nodo_v)
-            #Solo analiza si buscar_ciclo esta en true
-            if nodo_v in nodos_u and not hay_ciclo:
-                hay_ciclo = True
 
             for u in nodos_u:
+                adyacentes_a_u = self.adyacentes(u)
+                #Para buscar un ciclo, veo si v esta en los adyacentes de u, con uno me basta para determinar 
+                #si es o no acíclico
+                if nodo_v in adyacentes_a_u and not hay_ciclo:
+                    hay_ciclo = True
                 if nodos_visitados[u] == False:
                     nodos_visitados[u] = True #marcar u
                     predecesores[u] = nodo_v #Guardo el predecesor
@@ -340,8 +343,9 @@ class GrafoEnlazado:
     def mostrarNodos(self):
         print(self.__nodos)
 
-    def obtener_arreglo_relaciones(self):
-        return self.__arreglo
+    def mostrar_relaciones(self):
+        for i in range(self.__cantNodos):
+            self.__listas_adyacencia[i].recorrer()
      
     def __reconstruir_camino(self,nodo_destino,predecesores):
         #Reconstruyo el camino a partir del nodo destino mirando los predecesores

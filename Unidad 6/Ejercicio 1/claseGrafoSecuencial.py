@@ -58,10 +58,9 @@ class GrafoSecuencial:
         try:
             self.__validar_indices(i)
             for j in range(self.__cantNodos):
-                if j != i: #evito analizar un bucle en el mismo nodo
-                    pos = self.__obtener_posicion(i,j)
-                    if self.__arreglo[pos] > 0: #si tiene peso puede ser mayor a 1
-                        nodos_adyacentes.append(j)
+                pos = self.__obtener_posicion(i,j)
+                if self.__arreglo[pos] > 0: #si tiene peso puede ser mayor a 1
+                    nodos_adyacentes.append(j)
         except ValueError as error:
             print(error)
         return nodos_adyacentes
@@ -127,12 +126,12 @@ class GrafoSecuencial:
         es_aciclico = True   
         i = 0
         while i < self.__cantNodos and es_aciclico:
-            hay_ciclo = self.busqueda_en_amplitud_REA(i)
+            datos = self.busqueda_en_amplitud_REA(i)
+            hay_ciclo = datos[3]
             if hay_ciclo:
                 es_aciclico = False
             i+=1
         return es_aciclico
-
 
     def obtener_arbol_de_recubrimiento_minimo(self,nodo_origen):
         '''Aplica algoritmo de Prim'''
@@ -182,11 +181,14 @@ class GrafoSecuencial:
             nodo_v = cola.suprimir()
             recorrido.append(nodo_v)
             nodos_u = self.adyacentes(nodo_v)
-            #Solo analiza si buscar_ciclo esta en true
-            if nodo_v in nodos_u and not hay_ciclo:
-                hay_ciclo = True
-
+        
             for u in nodos_u:
+                adyacentes_a_u = self.adyacentes(u)
+                #Para buscar un ciclo, veo si v esta en los adyacentes de u, con uno me basta para determinar 
+                #si es o no acíclico
+                if nodo_v in adyacentes_a_u and not hay_ciclo:
+                    hay_ciclo = True
+
                 if nodos_visitados[u] == False:
                     nodos_visitados[u] = True #marcar u
                     predecesores[u] = nodo_v #Guardo el predecesor
@@ -251,13 +253,15 @@ class GrafoSecuencial:
             raise ValueError('Indices no válidos')
    
     def __obtener_posicion(self,i,j):
+        i+= 1
+        j+= 1
         #Obtiene la posicion del arreglo de enlaces trabajando con matriz triangular inferior
         if i <= j:
             aux = j 
             j = i
             i = aux
         pos = int(i *(i-1)/2 + j)
-        return pos
+        return pos - 1 #Para que sea el indice
 
     def __obtener_vertice_dist_mas_corta_desconocido(self,T):
         #Elijo vértice con la distancia más corta y desconocido
@@ -304,7 +308,7 @@ class GrafoSecuencial:
     def mostrarNodos(self):
         print(self.__nodos)
 
-    def mostrar_arreglo_relaciones(self):
+    def mostrar_relaciones(self):
         print(self.__arreglo)
      
     def __reconstruir_camino(self,nodo_destino,predecesores):
