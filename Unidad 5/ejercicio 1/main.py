@@ -19,9 +19,11 @@ def cargar_tabla(tablaH):
     return tablaH
 
 #Muestra la tabla generada
-def mostrar_tabla(clavesH):
+def mostrar_tabla(tablaH):
+    clavesH = tablaH.obtenerDatos()
+    M = tablaH.obtener_M()
     tabla = Table(title="TDA Tabla Hash")
-    tabla.add_column("MOD {}".format(cant_claves), style="green")
+    tabla.add_column("MOD {}".format(M), style="green")
     tabla.add_column("Claves")
     
     for i in range(len(clavesH)):
@@ -64,8 +66,7 @@ if __name__ == '__main__':
             tablaH = TablaHash(cant_claves)
         
         tablaH_cargada = cargar_tabla(tablaH)
-        clavesH = tablaH_cargada.obtenerDatos()
-        mostrar_tabla(clavesH)
+        mostrar_tabla(tablaH_cargada)
         buscar_claves(tablaH_cargada)
 
         op = menu.showMenu()

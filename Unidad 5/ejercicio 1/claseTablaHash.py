@@ -112,3 +112,6 @@ class TablaHash:
                 contador += 1
         factor_carga = contador / self.__M
         print(factor_carga)
+    
+    def obtener_M(self):
+        return self.__M
