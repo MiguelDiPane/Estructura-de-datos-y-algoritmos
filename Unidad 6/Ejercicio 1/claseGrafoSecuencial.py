@@ -261,7 +261,7 @@ class GrafoSecuencial:
             j = i
             i = aux
         pos = int(i *(i-1)/2 + j)
-        return pos - 1 #Para que sea el indice
+        return pos - 1 #Para que sea el índice
 
     def __obtener_vertice_dist_mas_corta_desconocido(self,T):
         #Elijo vértice con la distancia más corta y desconocido

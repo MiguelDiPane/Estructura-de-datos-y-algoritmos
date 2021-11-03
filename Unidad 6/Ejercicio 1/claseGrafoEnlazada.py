@@ -29,6 +29,9 @@ class GrafoEnlazado:
 
         #Se carga con diccionaros con el numero de nodo y el peso o 0 o 1 si no es ponderado (adyacencia)
         self.__listas_adyacencia = np.full(self.__cantNodos,None)
+        for i in range(self.__cantNodos):
+            nuevaLista = ListaEncadenada()
+            self.__listas_adyacencia[i] = nuevaLista
         
         self.__nodos = np.full(self.__cantNodos,None)
 
@@ -47,22 +50,12 @@ class GrafoEnlazado:
             self.__validar_indices(i,j)
 
             relacion = {'nodo':j,'peso':peso}
-            if self.__listas_adyacencia[i] == None:
-                lista = ListaEncadenada()
-                lista.insertar(relacion,0)
-                self.__listas_adyacencia[i] = lista
-            else:
-                pos = self.__listas_adyacencia[i].len() - 1
-                self.__listas_adyacencia[i].insertar(relacion,pos)
+            pos = self.__listas_adyacencia[i].len()
+            self.__listas_adyacencia[i].insertar(relacion,pos)
             
             relacion = {'nodo':i,'peso':peso}
-            if self.__listas_adyacencia[j] == None:
-                lista = ListaEncadenada()
-                lista.insertar(relacion,0)
-                self.__listas_adyacencia[j] = lista
-            else:
-                pos = self.__listas_adyacencia[j].len() - 1
-                self.__listas_adyacencia[j].insertar(relacion,pos)
+            pos = self.__listas_adyacencia[j].len()
+            self.__listas_adyacencia[j].insertar(relacion,pos)
 
         except ValueError as error:
             print(error)
