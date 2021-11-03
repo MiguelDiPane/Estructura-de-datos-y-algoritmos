@@ -74,8 +74,8 @@ if __name__ == '__main__':
     cant_claves = 1000
     
     menu = Menu('TDA - Tabla Hash')
-    menu.setOpciones(['Tamaño de la tabla Hash NO es un número primo (1000 claves)',
-                    'Tamaño de la tabla Hash es primo (Usa factor de carga 0.7 y calcula el primo en exceso)'])
+    menu.setOpciones(['Número de listas de claves sinónimas no primo (1000)',
+                    'Número de listas de claves sinónimas primo y factor de carga 0.7 (1429)'])
     
     mostrar_consideraciones()
     op = menu.showMenu(False)
