@@ -4,6 +4,17 @@ from rich.table import Table
 from rich import print
 from claseMenu import Menu
 
+#Muestra las políticas usadas en el ejercicio
+def mostrar_consideraciones():
+    tabla = Table(title="Consideraciones")
+    tabla.add_column("Característica", style="green")
+    tabla.add_column("Método elegido", style="cyan")
+    
+    tabla.add_row("Política manejo de colisiones","Direccionamiento abierto")
+    tabla.add_row("Función de transformación de claves","Método de la división")
+    tabla.add_row("Procesamiento de claves sinónimas","Secuencia de prueba lineal")
+    print(tabla)
+
 #Genera e inserta las claves en la tabla hash
 def cargar_tabla(tablaH):
     #incializo semilla para generar siempre los mismos numeros aleatorios y poder comparar
@@ -57,7 +68,8 @@ if __name__ == '__main__':
     menu.setOpciones(['Tamaño de la tabla Hash NO es un número primo (1000 claves)',
                     'Tamaño de la tabla Hash es primo (Usa factor de carga 0.7 y calcula el primo en exceso)'])
     
-    op = menu.showMenu()
+    mostrar_consideraciones()
+    op = menu.showMenu(False)
 
     while op != 0:
         if op == 1:
@@ -69,7 +81,9 @@ if __name__ == '__main__':
         mostrar_tabla(tablaH_cargada)
         buscar_claves(tablaH_cargada)
 
-        op = menu.showMenu()
+        menu.limpiar_pantalla()
+        mostrar_consideraciones()
+        op = menu.showMenu(False)
     
 
     

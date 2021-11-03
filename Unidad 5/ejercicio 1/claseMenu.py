@@ -4,8 +4,6 @@ from rich.table import Table
 from rich.theme import Theme
 from rich import box
 
-
-
 class Menu:
     __consola = None
     __titulo = ""
@@ -29,7 +27,6 @@ class Menu:
                             "flecha":"bold cyan"})
         self.__consola = Console(theme=self.__tema)
 
-
     def setOpciones(self,opciones,fin="Salir"):
         self.__opciones = opciones
         self.__salir = fin
@@ -37,8 +34,9 @@ class Menu:
     def setTitulo(self,title):
         self.__titulo = title
 
-    def showMenu(self):
-        os.system('cls')
+    def showMenu(self,borrar_activado=True):
+        if borrar_activado:
+            self.limpiar_pantalla()
 
         #-------------------#
         #   SHOW  OPTIONS   #
@@ -72,3 +70,5 @@ class Menu:
                 op = None
         return op 
 
+    def limpiar_pantalla(self):
+        os.system('cls')
