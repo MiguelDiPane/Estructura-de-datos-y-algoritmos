@@ -10,7 +10,7 @@ def mostrar_consideraciones():
     tabla.add_column("Característica", style="green")
     tabla.add_column("Método elegido", style="cyan")
     
-    tabla.add_row("Política manejo de colisiones","Encadenamientoo")
+    tabla.add_row("Política manejo de colisiones","Encadenamiento")
     tabla.add_row("Función de transformación de claves","Método de plegado")
     print(tabla)
 
