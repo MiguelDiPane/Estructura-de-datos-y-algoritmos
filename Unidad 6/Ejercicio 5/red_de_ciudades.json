@@ -1,0 +1,9 @@
+[   
+    {   "Ponderado":false,
+        "nodos":[[0,"Almafuerte"],[1,"Belen"],[2,"Cordoba"],[3,"Dar-el-Salam"],[4,"Estambul"],[5,"Finisterre"]],
+        "relaciones":[[0,1],[0,3],[1,2],[1,5],
+                    [1,4],[2,3],[3,1],[4,3],[4,5],
+                    [5,0],[5,3]]
+    }
+
+]
