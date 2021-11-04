@@ -278,10 +278,7 @@ class DigrafoSecuencial:
         #Inicializa la tabla a utilizar por el algoritmo de Dijkstra
         T = []
         for i in range(self.__cantNodos):
-            if i == 0:
-                registro = Registro(self.__nodos[i],False,0,[]) 
-            else:
-                registro = Registro(self.__nodos[i],False,float('inf'),[]) #inf, dist mas larga posible
+            registro = Registro(self.__nodos[i],False,float('inf'),None) #inf, dist mas larga posible
             T.append(registro)
         return T
 
