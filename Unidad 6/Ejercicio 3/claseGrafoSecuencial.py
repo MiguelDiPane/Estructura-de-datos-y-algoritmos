@@ -90,16 +90,11 @@ class GrafoSecuencial:
         try: 
             self.__validar_indices(nodo_inicial,nodo_destino)
             if self.__ponderado:
-                caminos = self.algoritmo_Dijkstra(nodo_inicial)
-                #Extraigo el camino correspondiente al que va hasta el nodo destino
-                camino = caminos[nodo_destino]
-                if len(camino) > 0:
-                    camino.insert(0,nodo_inicial)
-                    camino.append(nodo_destino)
+                predecesores = self.algoritmo_Dijkstra(nodo_inicial)              
             else:
                 datos = self.busqueda_en_amplitud_REA(nodo_inicial)
                 predecesores = datos[2]
-                camino = self.__reconstruir_camino(nodo_destino,predecesores)
+            camino = self.__reconstruir_camino(nodo_destino,predecesores)
                 
             if mostrar_mensaje:
                 print("Camino mínimo entre {0} y {1}: {2}".format(nodo_inicial,nodo_destino,camino))
@@ -238,7 +233,7 @@ class GrafoSecuencial:
                     if (T[v].distancia + self.__arreglo[pos]) < T[w].distancia:
                         #Reducir T[w].distancia a T[v].distancia + w(v,w)
                         T[w].distancia = T[v].distancia + self.__arreglo[pos]
-                        T[w].camino.append(v) #agrego v al camino 
+                        T[w].camino = v #agrego v al camino 
         self.__mostrar_tabla_T(T)
         caminos = self.__obtener_caminos_de_tabla_T(T)
         return caminos
@@ -255,7 +250,7 @@ class GrafoSecuencial:
     def __obtener_posicion(self,i,j):
         i+= 1
         j+= 1
-        #Obtiene la posicion del arreglo de enlaces trabajando con matriz triangular inferior
+        #Obtiene la posición del arreglo de enlaces trabajando con matriz triangular inferior
         if i <= j:
             aux = j 
             j = i
@@ -266,22 +261,17 @@ class GrafoSecuencial:
     def __obtener_vertice_dist_mas_corta_desconocido(self,T):
         #Elijo vértice con la distancia más corta y desconocido
         dist_mas_corta = float('inf')
-        i=0
-        while i < self.__cantNodos:
+        for i in range(self.__cantNodos):
             if T[i].conocido == False and T[i].distancia < dist_mas_corta:
                 v = i
                 dist_mas_corta = T[i].distancia
-            i+=1
         return v
 
     def __crear_tabla_T(self):
         #Inicializa la tabla a utilizar por el algoritmo de Dijkstra
         T = []
         for i in range(self.__cantNodos):
-            if i == 0:
-                registro = Registro(self.__nodos[i],False,0,[]) 
-            else:
-                registro = Registro(self.__nodos[i],False,float('inf'),[]) #inf, dist mas larga posible
+            registro = Registro(self.__nodos[i],False,float('inf'),None) #inf, dist mas larga posible
             T.append(registro)
         return T
 
