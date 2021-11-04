@@ -225,8 +225,6 @@ class GrafoSecuencial:
 
         for _ in range(self.__cantNodos):
             v = self.__obtener_vertice_dist_mas_corta_desconocido(T)
-            print(v)
-            input()
             T[v].conocido = True
             adyacentes_a_v = self.adyacentes(v)
             for w in adyacentes_a_v:
