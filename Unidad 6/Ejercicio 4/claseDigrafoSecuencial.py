@@ -109,8 +109,7 @@ class DigrafoSecuencial:
                 print("Camino mínimo entre {0} y {1}: {2}".format(nodo_inicial,nodo_destino,camino))
         except ValueError as error:
             print(error)
-
-        return camino, Q
+        return camino,Q
 
     def conexo(self):
         '''Aplica la búsqueda en aplitud para analizar la conexidad'''
@@ -279,10 +278,7 @@ class DigrafoSecuencial:
         #Inicializa la tabla a utilizar por el algoritmo de Dijkstra
         T = []
         for i in range(self.__cantNodos):
-            if i == 0:
-                registro = Registro(self.__nodos[i],False,0,[]) 
-            else:
-                registro = Registro(self.__nodos[i],False,float('inf'),[]) #inf, dist mas larga posible
+            registro = Registro(self.__nodos[i],False,float('inf'),None) #inf, dist mas larga posible
             T.append(registro)
         return T
 
@@ -311,7 +307,7 @@ class DigrafoSecuencial:
 
     def mostrar_relaciones(self):
         print(self.__matriz)
-    
+     
     def __reconstruir_camino(self,nodo_destino,predecesores):
         #Reconstruyo el camino a partir del nodo destino mirando los predecesores
         camino = []
