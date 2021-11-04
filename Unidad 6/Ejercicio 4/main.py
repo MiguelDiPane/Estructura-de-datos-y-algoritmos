@@ -65,7 +65,7 @@ if __name__ == '__main__':
                 camino_minimo, Q = digrafo.camino_minimo(i,j)
                
                 print("\n[bold yellow]Emisor:[/bold yellow] {}".format(persona_emisor))
-                print("[bold yellow]Receptor[/bold yellow] {}".format(persona_receptor))
+                print("[bold yellow]Receptor:[/bold yellow] {}".format(persona_receptor))
                 
                 print("\n[bold]Secuencia para el SMS más económico:[/bold]\n")
                 
